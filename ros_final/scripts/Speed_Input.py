@@ -1,8 +1,8 @@
+#! /usr/bin/env python2.7
+
 import rospy
-import tf2_ros
-from tf2_geometry_msgs import PointStamped
 from geometry_msgs.msg import  Twist
-from tf2_ros import buffer
+
 
 
 def main():
