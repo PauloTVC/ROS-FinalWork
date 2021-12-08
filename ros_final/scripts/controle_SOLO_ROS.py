@@ -5,7 +5,7 @@ from math import  atan2, hypot, sqrt
 from tf2_geometry_msgs import PointStamped
 from geometry_msgs.msg import Pose2D, Twist
 from tf2_ros import buffer
-from turtlesim.msg import Pose
+from ros_final.msg import poseStp
 
 #Input Speed of Cente of Mass by 
 #It will be feed by the Main Node
@@ -16,33 +16,15 @@ def Spd(data):
      return speed
 
 
-def vect(xp, yp, zp):
+def vect(xp, yp, zp, time):
      po = PointStamped()
      po.header.frame_id = "base_link"
+     po.header.stamp = time
      po.point.x = xp
      po.point.y = yp
      po.point.z = zp
      
      return po
-
-
-
-'''
-xLF = 80*sqrt(2)
-xRF = 80*sqrt(2)
-xLH = -80*sqrt(2)
-xRH = -80*sqrt(2)
-
-yLF = -160*sqrt(2)
-yRF = -160*sqrt(2)
-yLH = -160*sqrt(2)
-yRH = -160*sqrt(2)
-
-'''
-
-
-
-
 
 
 def main():
@@ -64,13 +46,13 @@ def main():
      #period
      pe = s/(4*spd)
 
-     pv[] = PointStamped()
+     pv = poseStp 
 
 
-     pv[0] = vect(s -0.08*sqrt(2), w/2, h)
-     pv[1] = vect(s -0.08*sqrt(2), -w/2, h)
-     pv[2] = vect(s +0.08*sqrt(2), w/2, h)
-     pv[3] = vect(s +0.08*sqrt(2), -w/2, h)
+     pv[0] = vect(s -0.08*sqrt(2), w/2, h, pe)
+     pv[1] = vect(s -0.08*sqrt(2), -w/2, h, pe)
+     pv[2] = vect(s +0.08*sqrt(2), w/2, h, pe)
+     pv[3] = vect(s +0.08*sqrt(2), -w/2, h, pe)
 
 
 
