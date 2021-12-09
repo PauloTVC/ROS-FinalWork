@@ -48,11 +48,29 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-##Generate messages in the 'msg' folder
 
+##Generate messages in the 'msg' folder
 add_message_files(
   FILES
   PointStampedArray.msg
+)
+
+## Generate added messages and services with any dependencies listed here
+generate_messages(
+   DEPENDENCIES
+   geometry_msgs
+   std_msgs
+)
+
+###################################
+## catkin specific configuration ##
+###################################
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES ros_final
+  CATKIN_DEPENDS message_runtime
+#  DEPENDS system_lib
 )
 
 ## Generate services in the 'srv' folder
@@ -206,3 +224,4 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
