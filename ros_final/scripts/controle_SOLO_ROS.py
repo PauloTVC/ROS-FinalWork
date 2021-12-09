@@ -14,9 +14,10 @@ from ros_final.msg import PointStampedArray
 #It will be feed by the Main 
 
 def Spd(data):
-     speed = Twist()
-     speed = rospy.wait_for_message("speed", Twist)
-     return speed
+     global spd
+     spd = Twist()
+     spd = rospy.wait_for_message("speed", Twist)
+     
 
 #Create the PointStampeds
 def vect(xp, yp, zp):
@@ -32,12 +33,12 @@ def main():
      rospy.init_node('Point_Planning')
      buffer = tf2_ros.Buffer()
      listener = tf2_ros.TransformListener(buffer)
-     rospy.Subscriber("speed", Twist, Spd)
+     rospy.Subscriber("/speed", Twist, Spd)
      P = rospy.Publisher("points", PointStampedArray, queue_size=10)
      r = rospy.Rate(10)
 
-     #speed
-     spd = Spd() 
+     #speed callback
+     Spd() 
      #height
      h = -0.16*sqrt(2)
      #width
@@ -64,6 +65,8 @@ def main():
 
      #publishing
      P.publish(pv)
+
+     r.sleep()
 
 
 
