@@ -18,7 +18,10 @@ def main():
     s.angular.y = 0
     s.angular.z = 0
 
+    
+
     while not rospy.is_shutdown():
+        print(s.linear.x)
         pub.publish(s)
         rate.sleep()
 
