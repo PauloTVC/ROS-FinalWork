@@ -10,17 +10,22 @@ from tf2_ros import buffer
 from ros_final.msg import PointStampedArray
 
 
+global spd
+
+spd = 0.001
+
 #Input Speed of Cente of Mass by 
 #It will be feed by the Main 
 
+
 def Spd(data):
-     global spd
+     
      spd = Twist()
      spd = rospy.wait_for_message("speed", Twist)
      
 
 #Create the PointStampeds
-def vect(xp, yp, zp):
+def ptd(xp, yp, zp):
      po = PointStamped()
      po.point.x = xp
      po.point.y = yp
@@ -33,38 +38,53 @@ def main():
      rospy.init_node('Point_Planning')
      buffer = tf2_ros.Buffer()
      listener = tf2_ros.TransformListener(buffer)
-     rospy.Subscriber("/speed", Twist, Spd)
+     rospy.Subscriber("speed", Twist, Spd)
      P = rospy.Publisher("points", PointStampedArray, queue_size=10)
      r = rospy.Rate(10)
 
-     #speed callback
-     Spd() 
      #height
      h = -0.16*sqrt(2)
      #width
      w = 0.2996
      #step
-     s = 0.05 
+     s = 0.05
+
+     if spd == 0:
+          spd = 0.001
      #period
      pe = s/(4*spd)
 
      #Array of PoinStamped
-     pv = PointStampedArray
-     pv.header.frame_id="base_link"
-     pv.header.stamp = pe 
+     vpt = PointStampedArray()
+     vpt.header.frame_id="base_link"
+     vpt.period = pe 
+
+     pv = [12]
 
 
      #hidden leg right
-     pv.points[0] = vect(s -0.08*sqrt(2), w/2, h)
+     pv[0] = ptd(-0.08*sqrt(2), w/2, h)
+     pv[1] = ptd(s/2 -0.08*sqrt(2), w/2, h + 0.05)     
+     pv[2] = ptd(s -0.08*sqrt(2), w/2, h)
      #hidden leg left
-     pv.points[1] = vect(s -0.08*sqrt(2), -w/2, h)
+     pv[3] = ptd(-0.08*sqrt(2), -w/2, h)
+     pv[4] = ptd(s/2 -0.08*sqrt(2), -w/2, h + 0.05)
+     pv[5] = ptd(s -0.08*sqrt(2), -w/2, h)
      #forward leg right
-     pv.points[2] = vect(s +0.08*sqrt(2), w/2, h)
+     pv[6] = ptd(0.08*sqrt(2), w/2, h)
+     pv[7] = ptd(s/2 +0.08*sqrt(2), w/2, h + 0.05)     
+     pv[8] = ptd(s +0.08*sqrt(2), w/2, h)
      #forward leg left
-     pv.points[3] = vect(s +0.08*sqrt(2), -w/2, h)
+     pv[9] = ptd(0.08*sqrt(2), -w/2, h)
+     pv[10] = ptd(s/2 +0.08*sqrt(2), -w/2, h + 0.05)
+     pv[11] = ptd(s +0.08*sqrt(2), -w/2, h)
+
+     vpt.points = pv
+
+
 
      #publishing
-     P.publish(pv)
+     P.publish(vpt)
 
      r.sleep()
 
