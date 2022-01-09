@@ -735,7 +735,7 @@
   <gazebo reference="FL_FOOT">
       <mu1 value="2.0"/>
       <mu2 value="2.0"/>
-      <kp value="10000000.0" />
+      <kp value="100000.0" />
       <kd value="1.0" />
       <material>Gazebo/Black </material>
     </gazebo>
@@ -743,7 +743,7 @@
   <gazebo reference="FR_FOOT">
       <mu1 value="2.0"/>
       <mu2 value="2.0"/>
-      <kp value="10000000.0" />
+      <kp value="100000.0" />
       <kd value="1.0" />
       <material>Gazebo/Black </material>
     </gazebo>
@@ -751,7 +751,7 @@
   <gazebo reference="HR_FOOT">
       <mu1 value="2.0"/>
       <mu2 value="2.0"/>
-      <kp value="10000000.0" />
+      <kp value="100000.0" />
       <kd value="1.0" />
       <material>Gazebo/Black </material>
     </gazebo>
@@ -759,7 +759,7 @@
   <gazebo reference="HL_FOOT">
       <mu1 value="2.0"/>
       <mu2 value="2.0"/>
-      <kp value="10000000.0" />
+      <kp value="100000.0" />
       <kd value="1.0" />
       <material>Gazebo/Black </material>
     </gazebo>

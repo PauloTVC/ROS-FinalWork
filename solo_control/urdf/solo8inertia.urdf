@@ -733,7 +733,7 @@
    </gazebo> 
 
   <gazebo reference="FL_FOOT">
-      <kp>1000.0</kp>
+      <kp>100.0</kp>
       <kd>0.1</kd>
       <mu1>0.8</mu1>
       <mu2>0.8</mu2>
@@ -743,7 +743,7 @@
     </gazebo>
 
   <gazebo reference="FR_FOOT">
-      <kp>1000.0</kp>
+      <kp>100.0</kp>
       <kd>0.1</kd>
       <mu1>0.8</mu1>
       <mu2>0.8</mu2>
@@ -753,7 +753,7 @@
     </gazebo>
 
   <gazebo reference="HR_FOOT">
-      <kp>1000.0</kp>
+      <kp>100.0</kp>
       <kd>0.1</kd>
       <mu1>0.8</mu1>
       <mu2>0.8</mu2>
@@ -763,7 +763,7 @@
     </gazebo>
 
   <gazebo reference="HL_FOOT">
-      <kp>1000.0</kp>
+      <kp>100.0</kp>
       <kd>0.1</kd>
       <mu1>0.8</mu1>
       <mu2>0.8</mu2>
